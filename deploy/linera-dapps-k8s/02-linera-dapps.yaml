@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: linera-dapps-service
-          image: DOCKER_REGISTRY/linera/linera-dapps-service:latest
+          image: DOCKER_REGISTRY/linera/linera-dapps:latest
           imagePullPolicy: Always
           volumeMounts:
             - name: workdir
