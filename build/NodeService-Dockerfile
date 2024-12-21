@@ -1,0 +1,15 @@
+FROM DOCKER_REGISTRY/linera/linera-base:latest
+
+user root
+ARG ALL_PROXY
+
+RUN mkdir -p /opt/linera-project
+
+COPY node-service-entrypoint.sh /usr/local/bin/entrypoint-inner.sh
+RUN echo "#!/bin/sh" > /usr/local/bin/entrypoint.sh
+RUN echo "all_proxy=$ALL_PROXY /usr/local/bin/entrypoint-inner.sh" >> /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint-inner.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+CMD ["/usr/local/bin/entrypoint.sh"]
+

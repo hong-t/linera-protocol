@@ -1,0 +1,1 @@
+docker build . -f Base-Dockerfile --build-arg ALL_PROXY=$all_proxy -t DOCKER_REGISTRY/linera/linera-base:latest

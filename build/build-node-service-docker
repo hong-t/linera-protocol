@@ -1,0 +1,1 @@
+docker build . -f NodeService-Dockerfile --build-arg ALL_PROXY=$all_proxy -t DOCKER_REGISTRY/linera/linera-node-service:latest

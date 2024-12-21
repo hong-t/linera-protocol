@@ -1,0 +1,50 @@
+FROM UBUNTU2004_DOCKER_REGISTRY_URL
+
+user root
+ARG ALL_PROXY
+
+RUN apt-get update -y
+RUN apt-get install git wget make curl jq vim gcc unzip libclang-dev g++ socat -y
+
+RUN mkdir /opt/linera-project
+RUN mkdir /opt/linera-project/protoc
+
+RUN cd /opt/linera-project/protoc \
+    && wget https://github.com/protocolbuffers/protobuf/releases/download/v29.1/protoc-29.1-linux-x86_64.zip \
+    && unzip protoc-29.1-linux-x86_64.zip
+
+RUN cd /opt/linera-project \
+    && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh \
+    && sh rustup.sh -y
+
+RUN cd /opt/linera-project \
+    && git clone https://github.com/respeer-ai/linera-protocol.git
+
+RUN cd /opt/linera-project/linera-protocol \
+    && export PATH=$HOME/.cargo/bin:$PATH \
+    && export PATH=/opt/linera-project/protoc/bin::$PATH \
+    && git checkout respeer-maas-testnet_archimedes-5fcbc190-2024_12_06 \
+    && export all_proxy=$ALL_PROXY \
+    && cargo install --path linera-service --features storage-service \
+    && cargo install --path linera-storage-service --features storage-service
+
+RUN cd /opt/linera-project \
+    && git clone https://github.com/respeer-ai/res-peer
+
+RUN cd /opt/linera-project/res-peer \
+    && export PATH=$HOME/.cargo/bin:$PATH \
+    && export PATH=/opt/linera-project/protoc/bin::$PATH \
+    && export all_proxy=$ALL_PROXY \
+    && cargo build --release --target wasm32-unknown-unknown
+
+RUN cd /opt/linera-project \
+    && git clone https://github.com/linera-hacker/linera-dapps.git
+
+RUN cd /opt/linera-project/linera-dapps \
+    && export PATH=$HOME/.cargo/bin:$PATH \
+    && export PATH=/opt/linera-project/protoc/bin::$PATH \
+    && export all_proxy=$ALL_PROXY \
+    && cargo build --release --target wasm32-unknown-unknown
+
+CMD ["sleep 1000000000"]
+
