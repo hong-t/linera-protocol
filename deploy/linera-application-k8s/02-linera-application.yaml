@@ -19,6 +19,9 @@ spec:
         - name: linera-application-service
           image: DOCKER_REGISTRY/linera/linera-application-service:latest
           imagePullPolicy: Always
+          volumeMounts:
+            - name: workdir
+              mountPath: /root/linera-project
           env:
             - name: ENV_ENVIRONMENT_TARGET
               valueFrom:
@@ -44,13 +47,12 @@ spec:
                 secretKeyRef:
                   name: mysql-password-secret
                   key: rootpassword
-            volumeMounts:
-            - name: workdir
-              mountPath: /root/linera-project
-          volumes:
-          - name: workdir
-            persistentVolumeClaim:
-              claimName: linera-application-pvc
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: workdir
+          persistentVolumeClaim:
+            claimName: linera-application-pvc
 ---
 apiVersion: v1
 kind: Service
