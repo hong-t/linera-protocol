@@ -6,8 +6,8 @@ cd $PROJECT_DIR
 [ ! -d res-peer ] && git clone https://github.com/respeer-ai/res-peer
 cd res-peer
 git pull
-sed -i "/read -p*/c sleep 100000000/" ./deploy-applications.sh
-sed -i "/read -p*/c sleep 100000000/" ./run_applications.sh
+sed -i "/read -p*/c sleep 100000000" ./deploy-applications.sh
+sed -i "/read -p*/c sleep 100000000" ./run_applications.sh
 
 source ~/.cargo/env
 export PATH=/root/.cargo/bin/:$PATH

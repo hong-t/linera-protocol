@@ -6,6 +6,8 @@ cd $PROJECT_DIR
 [ ! -d linera-dapps ] && git clone https://github.com/linera-hacker/linera-dapps.git
 cd linera-dapps
 git pull
+sed -i "/read -p*/c sleep 100000000" ./deploy-local.sh
+sed -i "/read -p*/c sleep 100000000" ./run-local.sh
 
 sed -i "s/WALLET_10_PUBLIC_IPORT=*/'localhost:30090'/g" ./run-local.sh
 sed -i "s/WALLET_11_PUBLIC_IPORT=*/'localhost:30091'/g" ./run-local.sh
