@@ -7,11 +7,26 @@ cd $PROJECT_DIR
 cd linera-dapps
 git pull
 
+sed -i "s/WALLET_10_PUBLIC_IPORT=*/'localhost:30090'/g" ./run-local.sh
+sed -i "s/WALLET_11_PUBLIC_IPORT=*/'localhost:30091'/g" ./run-local.sh
+sed -i "s/WALLET_12_PUBLIC_IPORT=*/'localhost:30092'/g" ./run-local.sh
+sed -i "s/WALLET_13_PUBLIC_IPORT=*/'localhost:30093'/g" ./run-local.sh
+sed -i "s/WALLET_14_PUBLIC_IPORT=*/'localhost:30094'/g" ./run-local.sh
+sed -i "s/BLOB_GATEWAY_PUBLIC_IPORT=*/'blobgateway.hk-testnet.blobgateway.com'/g" ./run-local.sh
+sed -i "s/LOCAL_IP=*/'localhost'/g" ./run-local.sh
+
+sed -i "s/WALLET_10_PUBLIC_IPORT=*/'localhost:30090'/g" ./deploy-local.sh
+sed -i "s/WALLET_11_PUBLIC_IPORT=*/'localhost:30091'/g" ./deploy-local.sh
+sed -i "s/WALLET_12_PUBLIC_IPORT=*/'localhost:30092'/g" ./deploy-local.sh
+sed -i "s/WALLET_13_PUBLIC_IPORT=*/'localhost:30093'/g" ./deploy-local.sh
+sed -i "s/WALLET_14_PUBLIC_IPORT=*/'localhost:30094'/g" ./deploy-local.sh
+sed -i "s/BLOB_GATEWAY_PUBLIC_IPORT=*/'blobgateway.hk-testnet.blobgateway.com'/g" ./deploy-local.sh
+sed -i "s/LOCAL_IP=*/'localhost'/g" ./run-local.sh
+
 source ~/.cargo/env
 export PATH=/root/.cargo/bin/:$PATH
-if [ -f /root/linera-project/linera/respeer/wallet_1.json ]; then
+if [ -d /root/linera-project/linera/dapps ]; then
   ./run-local.sh -N testnet-archimedes -n 5
 else
-  ./deploy-applications.sh -N testnet-archimedes -n 5
   ./deploy-local.sh -N testnet-archimedes -n 5
 fi
