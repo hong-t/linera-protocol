@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: node-service
-          image: DOCKER_REGISTRY/linera/node-service:latest
+          image: DOCKER_REGISTRY/linera/linera-node-service:latest
           imagePullPolicy: Always
           volumeMounts:
             - name: workdir
