@@ -57,12 +57,26 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: node-service
+  name: node-service-http
   namespace: kube-system
 spec:
   ports:
     - name: http
       port: 30080
-      targetPort: 30080
+  selector:
+    app: node-service
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-service
+  namespace: kube-system
+  annotations:
+    traefik.ingress.kubernetes.io/service.serversscheme: h2c
+spec:
+  ports:
+    - name: grpc
+      port: 30080
   selector:
     app: node-service

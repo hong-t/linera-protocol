@@ -15,22 +15,10 @@ metadata:
 
 spec:
   rules:
-    - host: api.npool.top
+    - host: linera-application.hk-testnet.linerameme.fun
       http: &http_rules
         paths:
           - path: /
             backend:
               serviceName: linera-application-service
-              servicePort: 50870
-    - host: api.linerameme.fun
-      http: *http_rules
-    - host: api.lineraswap.fun
-      http: *http_rules
-    - host: api.linerablob.fun
-      http: *http_rules
-    - host: api.testnet.linerameme.fun
-      http: *http_rules
-    - host: api.testnet.lineraswap.fun
-      http: *http_rules
-    - host: api.testnet.linerablob.fun
-      http: *http_rules
+              servicePort: 9081
