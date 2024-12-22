@@ -23,7 +23,7 @@ sed -i "s/WALLET_12_PUBLIC_IPORT=.*/WALLET_12_PUBLIC_IPORT='localhost:30092'/g" 
 sed -i "s/WALLET_13_PUBLIC_IPORT=.*/WALLET_13_PUBLIC_IPORT='localhost:30093'/g" ./deploy-local.sh
 sed -i "s/WALLET_14_PUBLIC_IPORT=.*/WALLET_14_PUBLIC_IPORT='localhost:30094'/g" ./deploy-local.sh
 sed -i "s/BLOB_GATEWAY_PUBLIC_IPORT=.*/BLOB_GATEWAY_PUBLIC_IPORT='blobgateway.hk-testnet.blobgateway.com'/g" ./deploy-local.sh
-sed -i "s/LOCAL_IP=.*/LOCAL_IP='localhost'/g" ./run-local.sh
+sed -i "s/LOCAL_IP=.*/LOCAL_IP='localhost'/g" ./deploy-local.sh
 
 source ~/.cargo/env
 export PATH=/root/.cargo/bin/:$PATH
