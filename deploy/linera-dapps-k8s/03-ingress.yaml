@@ -15,22 +15,17 @@ metadata:
 
 spec:
   rules:
-    - host: api.npool.top
-      http: &http_rules
+    - host: hk.testnet-archimedes.lineraswap.fun
+      http: &swap_rules
         paths:
-          - path: /
+          - path: /api/swap
             backend:
               serviceName: linera-dapps-service
-              servicePort: 50870
-    - host: api.linerameme.fun
-      http: *http_rules
-    - host: api.lineraswap.fun
-      http: *http_rules
-    - host: api.linerablob.fun
-      http: *http_rules
-    - host: api.testnet.linerameme.fun
-      http: *http_rules
-    - host: api.testnet.lineraswap.fun
-      http: *http_rules
-    - host: api.testnet.linerablob.fun
-      http: *http_rules
+              servicePort: 30092
+    - host: hk.testnet-archimedes.respeer.ai
+      http: &ams_rules
+        paths:
+          - path: /api/ams
+            backend:
+              serviceName: linera-dapps-service
+              servicePort: 30094
