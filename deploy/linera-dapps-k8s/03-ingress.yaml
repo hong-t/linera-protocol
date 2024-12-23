@@ -15,31 +15,17 @@ metadata:
 
 spec:
   rules:
-    - host: linera-dapps.hk-testnet.linerameme.fun
-      http: &http_rules
+    - host: hk.testnet-archimedes.lineraswap.fun
+      http: &swap_rules
         paths:
           - path: /api/swap
             backend:
               serviceName: linera-dapps-service
               servicePort: 30092
-    - host: api.hk-testnet.linerameme.fun
-      http: &http_rules
-        paths:
-          - path: /api/swap
-            backend:
-              serviceName: linera-dapps-service
-              servicePort: 30092
-    - host: api.hk-testnet.linerameme.fun
-      http: &http_rules
+    - host: hk.testnet-archimedes.respeer.ai
+      http: &ams_rules
         paths:
           - path: /api/ams
             backend:
               serviceName: linera-dapps-service
               servicePort: 30094
-    - host: api.hk-testnet.linerameme.fun
-      http: &http_rules
-        paths:
-          - path: /api/wlinera
-            backend:
-              serviceName: linera-dapps-service
-              servicePort: 30091
