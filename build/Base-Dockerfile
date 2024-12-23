@@ -22,10 +22,10 @@ RUN cd /opt/linera-project \
 
 RUN cd /opt/linera-project/linera-protocol \
     && export PATH=$HOME/.cargo/bin:$PATH \
-    && export PATH=/opt/linera-project/protoc/bin::$PATH \
+    && export PATH=/opt/linera-project/protoc/bin:$PATH \
     && git checkout respeer-maas-testnet_archimedes-5fcbc190-2024_12_06 \
     && export all_proxy=$ALL_PROXY \
-    && cargo install --path linera-service --features storage-service \
+    && cargo install --path linera-service --features disable-native-rpc,enable-wallet-rpc,enable-request-application,storage-service,listen-localhost \
     && cargo install --path linera-storage-service --features storage-service
 
 RUN cd /opt/linera-project \
@@ -33,7 +33,7 @@ RUN cd /opt/linera-project \
 
 RUN cd /opt/linera-project/res-peer \
     && export PATH=$HOME/.cargo/bin:$PATH \
-    && export PATH=/opt/linera-project/protoc/bin::$PATH \
+    && export PATH=/opt/linera-project/protoc/bin:$PATH \
     && export all_proxy=$ALL_PROXY \
     && cargo build --release --target wasm32-unknown-unknown
 
@@ -42,7 +42,7 @@ RUN cd /opt/linera-project \
 
 RUN cd /opt/linera-project/linera-dapps \
     && export PATH=$HOME/.cargo/bin:$PATH \
-    && export PATH=/opt/linera-project/protoc/bin::$PATH \
+    && export PATH=/opt/linera-project/protoc/bin:$PATH \
     && export all_proxy=$ALL_PROXY \
     && cargo build --release --target wasm32-unknown-unknown
 
