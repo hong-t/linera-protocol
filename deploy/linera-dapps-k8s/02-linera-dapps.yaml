@@ -47,6 +47,16 @@ spec:
                 secretKeyRef:
                   name: mysql-password-secret
                   key: rootpassword
+            - name: ENV_BLOB_CHAIN_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: dapps-service-environment
+                  key: environment.blob_chain_id
+            - name: ENV_BLOB_APP_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: dapps-service-environment
+                  key: environment.blob_app_id
       imagePullSecrets:
         - name: regcred
       volumes:

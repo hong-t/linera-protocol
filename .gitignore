@@ -22,3 +22,5 @@
 # Helm
 kubernetes/linera-validator/working/*
 node_modules
+
+.00-configmap.yaml
