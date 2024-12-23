@@ -57,7 +57,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: node-service-http
+  name: node-service
   namespace: kube-system
 spec:
   ports:
@@ -70,7 +70,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: node-service
+  name: node-service-h2c
   namespace: kube-system
   annotations:
     traefik.ingress.kubernetes.io/service.serversscheme: h2c
