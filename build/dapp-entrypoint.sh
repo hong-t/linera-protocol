@@ -9,6 +9,9 @@ git pull
 sed -i "/read -p*/c sleep 100000000" ./deploy-local.sh
 sed -i "/read -p*/c sleep 100000000" ./run-local.sh
 
+sed -i "s/blob_gateway_app_id=.*/blob_gateway_app_id=\"$ENV_BLOB_APP_ID\"/g" ./deploy-local.sh
+sed -i "s/blob_gateway_creation_chain_id=.*/blob_gateway_creation_chain_id=\"$ENV_BLOB_CHAIN_ID\"/g" ./deploy-local.sh
+
 sed -i "s/WALLET_10_PUBLIC_IPORT=.*/WALLET_10_PUBLIC_IPORT='localhost:30090'/g" ./run-local.sh
 sed -i "s/WALLET_11_PUBLIC_IPORT=.*/WALLET_11_PUBLIC_IPORT='localhost:30091'/g" ./run-local.sh
 sed -i "s/WALLET_12_PUBLIC_IPORT=.*/WALLET_12_PUBLIC_IPORT='localhost:30092'/g" ./run-local.sh

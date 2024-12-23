@@ -2,6 +2,8 @@ FROM DOCKER_REGISTRY/linera/linera-base:latest
 
 user root
 ARG ALL_PROXY
+ARG ENV_BLOB_CHAIN_ID
+ARG ENV_BLOB_APP_ID
 
 RUN mkdir -p /opt/linera-project
 
