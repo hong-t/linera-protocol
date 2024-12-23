@@ -14,11 +14,16 @@ metadata:
       kube-system-common-headers@kubernetescrd
 
 spec:
+  tls:
+    - hosts:
+        - '*.hk-testnet.blobgateway.com'
+        - 'hk-testnet.blobgateway.com'
+      secretName: hk-testnet-blobgateway-com-tls
   rules:
-    - host: linera-application.hk-testnet.linerameme.fun
+    - host: blobgateway.hk-testnet.blobgateway.com
       http: &http_rules
         paths:
-          - path: /
+          - path: /api/blobs
             backend:
               serviceName: linera-application-service
               servicePort: 9081

@@ -14,6 +14,11 @@ metadata:
       kube-system-common-headers@kubernetescrd
 
 spec:
+  tls:
+    - hosts:
+        - '*.hk-testnet.linerameme.fun'
+        - 'hk-testnet.linerameme.fun'
+      secretName: hk-testnet-linerameme-fun-tls
   rules:
     - host: node-service.hk-testnet.linerameme.fun
       http: &http_rules
