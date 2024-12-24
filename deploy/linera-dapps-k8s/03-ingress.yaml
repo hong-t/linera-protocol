@@ -29,3 +29,7 @@ spec:
             backend:
               serviceName: linera-dapps-service
               servicePort: 30094
+    - host: testnet-archimedes.lineraswap.fun
+      http: *swap_rules
+    - host: testnet-archimedes.respeer.ai
+      http: *ams_rules
