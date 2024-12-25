@@ -21,7 +21,7 @@ spec:
           imagePullPolicy: Always
           volumeMounts:
             - name: workdir
-              mountPath: /root/linera-project
+              mountPath: /root/.config/linera
           env:
             - name: ENV_ENVIRONMENT_TARGET
               valueFrom:
