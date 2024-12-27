@@ -26,8 +26,9 @@ RUN cd /opt/linera-project/linera-protocol \
     && export PATH=/opt/linera-project/protoc/bin:$PATH \
     && git checkout respeer-maas-testnet_archimedes-5fcbc190-2024_12_06 \
     && export all_proxy=$ALL_PROXY \
-    && cargo install --path linera-service --features disable-native-rpc,enable-wallet-rpc,enable-request-application,storage-service \
-    && cargo install --path linera-storage-service --features storage-service
+    && CARGO_NET_GIT_FETCH_WITH_CLI=true cargo install --path linera-service --features disable-native-rpc,enable-wallet-rpc,enable-request-application,storage-service \
+    && CARGO_NET_GIT_FETCH_WITH_CLI=true cargo install --path linera-storage-service --features storage-service \
+    && cargo clean
 
 RUN cd /opt/linera-project \
     && git clone https://github.com/respeer-ai/res-peer
@@ -36,7 +37,7 @@ RUN cd /opt/linera-project/res-peer \
     && export PATH=$HOME/.cargo/bin:$PATH \
     && export PATH=/opt/linera-project/protoc/bin:$PATH \
     && export all_proxy=$ALL_PROXY \
-    && cargo build --release --target wasm32-unknown-unknown
+    && CARGO_NET_GIT_FETCH_WITH_CLI=true cargo build --release --target wasm32-unknown-unknown
 
 RUN cd /opt/linera-project \
     && git clone https://github.com/linera-hacker/linera-dapps.git
@@ -45,7 +46,13 @@ RUN cd /opt/linera-project/linera-dapps \
     && export PATH=$HOME/.cargo/bin:$PATH \
     && export PATH=/opt/linera-project/protoc/bin:$PATH \
     && export all_proxy=$ALL_PROXY \
-    && cargo build --release --target wasm32-unknown-unknown
+    && CARGO_NET_GIT_FETCH_WITH_CLI=true cargo build --release --target wasm32-unknown-unknown
+
+RUN rm -rf /root/.cargo/bin/linera-db \
+           /root/.cargo/bin/linera-proxy \
+           /root/.cargo/bin/linera-schema-export \
+           /root/.cargo/bin/linera-server \
+           /root/.cargo/bin/linera-storage-server
 
 CMD ["sleep 1000000000"]
 
