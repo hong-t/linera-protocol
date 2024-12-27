@@ -3,6 +3,7 @@ FROM UBUNTU2004_DOCKER_REGISTRY_URL
 user root
 ARG ALL_PROXY
 
+RUN chmod 777 /tmp
 RUN apt-get update -y
 RUN apt-get install git wget make curl jq vim gcc unzip libclang-dev g++ socat -y
 
